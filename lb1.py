@@ -1,5 +1,5 @@
 from collections import Counter
-text = open("text.txt",'r',encoding='utf8').read().lower()
+text = open("text1.txt", 'r', encoding='utf8').read().lower()
 box = text.split()
 
 words3 = []
