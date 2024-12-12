@@ -2,7 +2,7 @@ from collections import Counter
 text = open("text1.txt", 'r', encoding='utf8').read().lower()
 box = text.split()
 
-words3 = []
+words3 = []12
 words5 = []
 words7 = []
 words10 = []
