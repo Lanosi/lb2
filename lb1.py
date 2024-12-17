@@ -1,25 +1,19 @@
 from collections import Counter
+
 text = open("text1.txt", 'r', encoding='utf8').read().lower()
-box = text.split()
+words = text.split()
 
-words3 = []12
-words5 = []
-words7 = []
-words10 = []
-for x in box:
-    if len(x) == 3:
-        words3.append(x)
-    if len(x) == 5:
-        words5.append(x)
-    if len(x) == 7:
-        words7.append(x)
-    if len(x) == 10:
-        words10.append(x)
+box_word = {3: [], 5: [], 7: [], 10: []}
 
-cntWords3 = Counter(words3)
-cntWords5 = Counter(words5)
-cntWords7 = Counter(words7)
-cntWords10 = Counter(words10)
+for word in words:
+    if len(word) in box_word:
+        box_word[len(word)].append(word)
+print(box_word)
 
-print(f"самое часто употребляемое слово из 3, 5, 7, 10 букв: {cntWords3.most_common(1)[0]}{cntWords5.most_common(1)[0]}{cntWords7.most_common(1)[0]}{cntWords10.most_common(1)[0]}")
-print(f"самое редко употребляемое слово из 3, 5, 7, 10 букв: {cntWords3.most_common()[-1]}{cntWords5.most_common()[-1]}{cntWords7.most_common()[-1]}{cntWords10.most_common()[-1]}")
+counters = {length: Counter(word_list) for length, word_list in box_word.items()}
+
+max_many_words = {length: counter.most_common(1)[0] for length, counter in counters.items() if counter}
+min_many_words = {length: counter.most_common()[-1] for length, counter in counters.items() if counter}
+
+print(f"самое часто употребляемое слово из 3, 5, 7, 10 букв: {max_many_words[3]} {max_many_words[5]} {max_many_words[7]} {max_many_words[10]}")
+print(f"самое редко употребляемое слово из 3, 5, 7, 10 букв: {min_many_words[3]} {min_many_words[5]} {min_many_words[7]} {min_many_words[10]}")
