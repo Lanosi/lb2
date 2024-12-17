@@ -5,8 +5,7 @@ class Main:
         self.cols = len(data[0]) if data else 0
 
     def __str__(self):
-        """Формирует строку для представления матрицы."""
-        return "\n".join([" ".join(map(str, row)) for row in self.data])
+        return "\n".join(" ".join(map(str, row)) for row in self.data)
 
     def __add__(self, other):
         """Перегрузка оператора + для сложения с другой матрицей или числом."""
@@ -56,3 +55,4 @@ if __name__ == "__main__":
 
     print("\nСравнение matrix1 и matrix2:")
     print(matrix1 == matrix2)
+
