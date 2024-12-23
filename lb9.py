@@ -51,7 +51,12 @@ class QuoteSystem:
         for i, quote in enumerate(sorted_quotes, 1):
             self.display_quote(quote, i)
 
-    def menu(self):
+
+class Menu:
+    def __init__(self, system):
+        self.system = system
+
+    def display_menu(self):
         while True:
             print("Меню:")
             print("1) Добавить новую цитату")
@@ -63,14 +68,14 @@ class QuoteSystem:
             choice = input("Выберите действие (1-5): ")
 
             if choice == "1":
-                self.input_quote()
+                self.system.input_quote()
             elif choice == "2":
                 keyword = input("Введите ключевое слово для поиска: ")
-                self.search_quote(keyword)
+                self.system.search_quote(keyword)
             elif choice == "3":
-                self.display_quotes()
+                self.system.display_quotes()
             elif choice == "4":
-                self.display_quotes(sort_by_date=True)
+                self.system.display_quotes(sort_by_date=True)
             elif choice == "5":
                 print("Удачи! >_<")
                 break
@@ -79,5 +84,6 @@ class QuoteSystem:
 
 
 if __name__ == "__main__":
-    system = QuoteSystem()
-    system.menu()
+    quote_system = QuoteSystem()
+    menu = Menu(quote_system)
+    menu.display_menu()
